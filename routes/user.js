@@ -7,3 +7,13 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+// VER TODOS LOS USERS
+
+// VER UN USER
+
+// CREAR USER
+
+// EDITAR USER
+
+// ELIMINAR USER
