@@ -17,12 +17,12 @@ router.get('/', function(req, res, next) {
 
 
 // VER TODOS LOS USERS
-
 router.get('/allUsers', UserController.getAll);
 
 // VER UN USER
 
-// CREAR USER
+// REGISTER USER
+router.post('/register', UserController.register)
 
 // EDITAR USER
 
