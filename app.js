@@ -4,18 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
+var mongoose = require('mongoose');
+var router = require('./routes/router');
 require('dotenv').config()
 
-
-var router = require('./routes/router');
+connect();
 
 var app = express();
 
 app.use(cors())
-
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,5 +36,22 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.status(500).json();
 });
+
+function listen() {
+}
+
+
+function connect() {
+  try {
+    mongoose.connection
+      .on("error", console.log)
+      .on("disconnected", connect)
+      .once("open", listen);
+    var connection = require('./config/mongoose');
+    return connection;
+  } catch (e) {
+    console.log(e.message);
+  }
+}
 
 module.exports = app;
