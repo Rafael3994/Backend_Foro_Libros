@@ -20,11 +20,12 @@ router.get('/getuser', auth, UserController.getUser);
 // REGISTER USER
 router.post('/register', UserController.register);
 
-// REGISTER USER
-router.post('/register', UserController.register);
-
 // LOGIN USER
 router.post('/login', UserController.login);
+
+// LOGOUT
+router.get('/logout', auth, UserController.logout);
+
 
 
 // EDITAR USER

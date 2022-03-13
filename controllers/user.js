@@ -54,3 +54,17 @@ exports.getUser = async (req, res, next) => {
         return res.status(500).json(error);
     }
 }
+
+exports.logout = async (req, res, next) => {
+    try {
+        const response = await UserService.logout(req.user.email, req.token);
+        if (response.modifiedCount === 1) {
+            //TODO: mirar para traducir
+            return res.status(200).json('Logout');
+        }
+        //TODO: mirar para traducir
+        return res.status(401).json('Logout fallido.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}

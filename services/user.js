@@ -61,3 +61,17 @@ exports.login = async (email, password) => {
         return Promise.reject(error);
     }
 }
+
+exports.logout = async (email, token) => {
+    try {
+        return UserModel.updateOne({ email: email }, {
+            $pull: {
+                tokens: { token: [token] },
+            }
+        })
+            .then(user => { return Promise.resolve(user) })
+            .catch(error => { return Promise.reject(error) })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
