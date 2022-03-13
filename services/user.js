@@ -14,6 +14,18 @@ exports.getAll = () => {
     }
 }
 
+exports.getUser = (idUser) => {
+    try {
+        return UserModel.findById(idUser).then((res) => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        });
+    } catch (error) {
+        return error;
+    }
+}
+
 exports.register = async (email, password, name) => {
     try {
         password = await bcrypt.hash(password, SALTROUNDS);

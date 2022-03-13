@@ -12,10 +12,10 @@ router.get('/seeder', async function(req, res, next) {
 });
 
 // VER TODOS LOS USERS
-router.get('/allUsers', auth, UserController.getAll);
+router.get('/allusers', auth, UserController.getAll);
 
 // VER UN USER
-router.get('/getUser', UserController.getUser);
+router.get('/getuser', auth, UserController.getUser);
 
 // REGISTER USER
 router.post('/register', UserController.register);
