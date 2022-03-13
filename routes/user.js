@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var UserModel = require('../models/UserModel');
+var UserController = require('../controllers/user');
 
 
 /* GET home page. */
@@ -10,9 +11,14 @@ router.get('/seeder', async function(req, res, next) {
   res.status(200).json('Users de Backend Blog de libros.');
 });
 
-module.exports = router;
+router.get('/', function(req, res, next) {
+  res.json('user');
+});
+
 
 // VER TODOS LOS USERS
+
+router.get('/allUsers', UserController.getAll);
 
 // VER UN USER
 
@@ -21,3 +27,8 @@ module.exports = router;
 // EDITAR USER
 
 // ELIMINAR USER
+
+
+
+
+module.exports = router;
