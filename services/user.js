@@ -18,8 +18,8 @@ exports.register = async (email, password, name) => {
     try {
         password = await bcrypt.hash(password, SALTROUNDS);
         // Mira que no haya usuario con el mismo email
-        const user = await UserModel.find({email: email});
-        if(user.length === 0){
+        const user = await UserModel.find({ email: email });
+        if (user.length === 0) {
             return UserModel.create({ name: name, email: email, password: password, roles: ['user'] })
                 .then(res => {
                     console.log(res);
@@ -28,7 +28,23 @@ exports.register = async (email, password, name) => {
                     return Promise.reject(error);
                 })
         }
+        //TODO: mirar para traducir
         return Promise.reject('No se pudo crear.');
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.login = async (email, password) => {
+    try {
+        const user = await UserModel.findByCredentials(email, password);
+        if (!user) {
+            //TODO: mirar para traducir
+            return Promise.resolve('No pudiste iniciar sesion.');
+        }
+        const UserWithToken = await user.generateAuthToken();
+        // console.log(UserWithToken);
+        return Promise.resolve(UserWithToken);
     } catch (error) {
         return Promise.reject(error);
     }

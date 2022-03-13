@@ -11,24 +11,22 @@ router.get('/seeder', async function(req, res, next) {
   res.status(200).json('Users de Backend Blog de libros.');
 });
 
-router.get('/', function(req, res, next) {
-  res.json('user');
-});
-
-
 // VER TODOS LOS USERS
 router.get('/allUsers', UserController.getAll);
 
-// VER UN USER
+// REGISTER USER
+router.post('/register', UserController.register);
 
 // REGISTER USER
-router.post('/register', UserController.register)
+router.post('/register', UserController.register);
 
+// LOGIN USER
+router.post('/login', UserController.login);
+
+
+// VER UN USER
 // EDITAR USER
-
 // ELIMINAR USER
-
-
 
 
 module.exports = router;

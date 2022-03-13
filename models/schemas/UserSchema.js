@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
   roles: [{
     type: String,
     required: true,
-  }], 
+  }],
   tokens: [{
     token: {
       type: String,
@@ -42,27 +42,42 @@ UserSchema.methods.toJSON = function () {
 }
 
 UserSchema.methods.generateAuthToken = async function () {
-  // console.log('generateAuthToken');
-  // // Generate an auth token for the user
-  // const user = this;
-  // console.log(user.name);
-  // const token = jwt.sign({ _id: user._id, name: user.name, email: user.email, role: user.role }, process.env.JWT_SECRET)
-  // user.tokens = user.tokens.concat({ token: token })
-  // await user.save()
-  // return token
+  try {
+    console.log('generateAuthToken');
+    // Generate an auth token for the user
+    const user = this;
+    console.log(user.name);
+    const token = jwt.sign({ _id: user._id, name: user.name, email: user.email, role: user.role }, process.env.JWT_SECRET)
+    user.tokens = user.tokens.concat({ token: token })
+    await user.save()
+    return user;
+  } catch (error) {
+    return error;
+  }
 }
 
-UserSchema.statics.findByCredentials = async (email, password) => {
-  // Search for a user by email and password.
-  const user = await UserModel.findOne({ email: email })
-  if (!user) {
-    throw new Error({ error: 'Invalid login credentials' })
+UserSchema.statics.findByCredentials = (email, password) => {
+  try {
+    return UserModel.findOne({ email: email }).then(user => {
+      if (!user) {
+        //TODO: mirar para traducir
+        throw new Error({ error: 'Invalid login credentials' })
+      }
+      return bcrypt.compare(password, user.password).then(isPasswordMatch => {
+        if (!isPasswordMatch) {
+          //TODO: mirar para traducir
+          throw new Error({ error: 'Invalid login credentials' })
+        }
+        return Promise.resolve(user);
+      }).catch(error => {
+        return Promise.reject(error);
+      })
+    }).catch(error => {
+      return Promise.reject(error);
+    })
+  } catch (error) {
+    return error;
   }
-  const isPasswordMatch = await bcrypt.compare(password, user.password)
-  if (!isPasswordMatch) {
-    throw new Error({ error: 'Invalid login credentials' })
-  }
-  return user
 }
 
 const UserModel = mongoose.model('Users', UserSchema);
