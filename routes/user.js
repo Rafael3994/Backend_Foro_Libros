@@ -3,7 +3,7 @@ var router = express.Router();
 
 var UserModel = require('../models/UserModel');
 var UserController = require('../controllers/user');
-
+var auth = require('../middleware/auth');
 
 /* GET home page. */
 router.get('/seeder', async function(req, res, next) {
@@ -12,7 +12,10 @@ router.get('/seeder', async function(req, res, next) {
 });
 
 // VER TODOS LOS USERS
-router.get('/allUsers', UserController.getAll);
+router.get('/allUsers', auth, UserController.getAll);
+
+// VER UN USER
+router.get('/getUser', UserController.getUser);
 
 // REGISTER USER
 router.post('/register', UserController.register);
@@ -24,7 +27,6 @@ router.post('/register', UserController.register);
 router.post('/login', UserController.login);
 
 
-// VER UN USER
 // EDITAR USER
 // ELIMINAR USER
 

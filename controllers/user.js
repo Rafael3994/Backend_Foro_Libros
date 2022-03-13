@@ -41,3 +41,11 @@ exports.login = async (req, res, next) => {
         return res.status(500).json(error);
     }
 }
+
+exports.getUser = async (req, res, next) => {
+    try {
+          return res.status(200).json();
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
