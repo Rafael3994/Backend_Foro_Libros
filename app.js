@@ -74,7 +74,8 @@ async function i18nextInit() {
           'failedDeleteUser': 'Could not delete user',
           'succesfulNewAdmin': 'Added as admin.',
           'failedNewAdmin': 'Could not added as admin.',
-          'failedRegister': 'Could not register'
+          'failedRegister': 'Could not register',
+          'withoutLibros': 'Without books.'
         }
       },
       es: {
@@ -89,7 +90,8 @@ async function i18nextInit() {
           'failedDeleteUser': 'No se pudo borrar el usuario',
           'succesfulNewAdmin': 'Se añadio como admin.',
           'failedNewAdmin': 'No se pudo añadir como admin.',
-          'failedRegister': 'No has podido iniciar sesion.'
+          'failedRegister': 'No has podido iniciar sesion.',
+          'withoutLibros': 'No hay libros.'
         }
       },
       cat: {
@@ -104,7 +106,8 @@ async function i18nextInit() {
           'failedDeleteUser': "No s'ha pogut esborrar l'usuari.",
           'succesfulNewAdmin': "S'ha afegit com a admin.",
           'failedNewAdmin': "No s'ha pogut afegit com a admin.",
-          'failedRegister': 'No has pogut iniciar sessio.'
+          'failedRegister': 'No has pogut iniciar sessio.',
+          'withoutLibros': 'Sense llibres.'
         }
       }
     }

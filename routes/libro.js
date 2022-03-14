@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var LibroController = require('../controllers/libro');
 
 var LibroModel = require('../models/LibroModel');
 
@@ -47,10 +48,7 @@ router.get('/seeder', async function (req, res, next) {
 });
 
 // VER TODOS LOS LIBROS
-router.get('/allLibros', async function (req, res, next) {
-    const libros = await LibroModel.find({});
-    res.json(libros);
-});
+router.get('/allLibros', LibroController.getAllLibros)
 
 // VER UN LIBRO
 
