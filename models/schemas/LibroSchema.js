@@ -27,7 +27,6 @@ const LibroSchema = new mongoose.Schema({
     required: false,
     default: null
   },
-  // TODO: mirar populate
   comentarios: [{
     comentario: {
       idUser: { 

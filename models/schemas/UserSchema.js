@@ -21,7 +21,6 @@ const UserSchema = new mongoose.Schema({
     required: false,
     default: null
   },
-  // TODO: Preguntar como cambiar la directiva de la ACL para que no me compare con role
   roles: [{
     type: String,
     required: true,
@@ -58,13 +57,11 @@ UserSchema.statics.findByCredentials = (email, password) => {
   try {
     return UserModel.findOne({ email: email }).then(user => {
       if (!user) {
-        //TODO: mirar para traducir
-        throw new Error({ error: 'Invalid login credentials' })
+        return Promise.resolve(false);
       }
       return bcrypt.compare(password, user.password).then(isPasswordMatch => {
         if (!isPasswordMatch) {
-          //TODO: mirar para traducir
-          throw new Error({ error: 'Invalid login credentials' })
+          return Promise.resolve(false);
         }
         return Promise.resolve(user);
       }).catch(error => {

@@ -6,8 +6,11 @@ var logger = require('morgan');
 var cors = require('cors')
 var mongoose = require('mongoose');
 var router = require('./routes/router');
+const i18next = require('i18next');
+
 require('dotenv').config()
 
+i18nextInit();
 connect();
 
 var app = express();
@@ -23,12 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', router);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -52,6 +55,61 @@ function connect() {
   } catch (e) {
     console.log(e.message);
   }
+}
+
+async function i18nextInit() {
+  await i18next.init({
+    lng: 'es',
+    debug: false,
+    resources: {
+      en: {
+        translation: {
+          'lengChange': 'Lenguage was changed.',
+          'withoutUsers': 'There are no users in the database.',
+          'notLogin': 'You can not make login.',
+          'notFoundUser': 'Not found user',
+          'successfulLogout': 'logout',
+          'failedLogout': "Could not logout.",
+          'succesfulDeleteUser': 'Delete user.',
+          'failedDeleteUser': 'Could not delete user',
+          'succesfulNewAdmin': 'Added as admin.',
+          'failedNewAdmin': 'Could not added as admin.',
+          'failedRegister': 'Could not register'
+        }
+      },
+      es: {
+        translation: {
+          'lengChange': 'Se cambio el idioma.',
+          'withoutUsers': 'No hay usuarios en la Base de datos.',
+          'notLogin': 'No pudiste iniciar sesion.',
+          'notFoundUser': 'Usuario no encontrado.',
+          'successfulLogout': 'logout',
+          'failedLogout': "No se pudo cerrar sesion.",
+          'succesfulDeleteUser': 'Usuario eliminado.',
+          'failedDeleteUser': 'No se pudo borrar el usuario',
+          'succesfulNewAdmin': 'Se añadio como admin.',
+          'failedNewAdmin': 'No se pudo añadir como admin.',
+          'failedRegister': 'No has podido iniciar sesion.'
+        }
+      },
+      cat: {
+        translation: {
+          'lengChange': "L'idioma ha canviat.",
+          'withoutUsers': 'No hi ha usuaris a la Base de dades.',
+          'notLogin': 'No has pogut iniciar sessio.',
+          'notFoundUser': 'Usuario no trobat.',
+          'successfulLogout': 'logout',
+          'failedLogout': "No s'ha pogut tanca sessio.",
+          'succesfulDeleteUser': 'Usuari esborrat.',
+          'failedDeleteUser': "No s'ha pogut esborrar l'usuari.",
+          'succesfulNewAdmin': "S'ha afegit com a admin.",
+          'failedNewAdmin': "No s'ha pogut afegit com a admin.",
+          'failedRegister': 'No has pogut iniciar sessio.'
+        }
+      }
+    }
+  }
+  );
 }
 
 module.exports = app;

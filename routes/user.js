@@ -1,15 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
-var UserModel = require('../models/UserModel');
 var UserController = require('../controllers/user');
 var auth = require('../middleware/auth');
-
-/* GET home page. */
-router.get('/seeder', async function(req, res, next) {
-  let user = await UserModel.create({ name: 'user1', email: 'user@gmail.com', password: 'test12345&', roles: ['user']})
-  res.status(200).json('Users de Backend Blog de libros.');
-});
 
 // VER TODOS LOS USERS (admin)
 router.get('/allusers', auth, UserController.getAll);
@@ -37,8 +29,5 @@ router.put('/newadmin', auth, UserController.newadmin);
 
 // EDITAR USER (user, admin)
 router.put('/edituser', auth, UserController.edituser);
-
-
-
 
 module.exports = router;
