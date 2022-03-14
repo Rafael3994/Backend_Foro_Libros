@@ -57,24 +57,54 @@ function connect() {
   }
 }
 
-async function i18nextInit () {
+async function i18nextInit() {
   await i18next.init({
-    lng: 'es', // if you're using a language detector, do not define the lng option
+    lng: 'es',
     debug: false,
     resources: {
       en: {
         translation: {
-          'lengChange': 'Lenguage was changed.'
+          'lengChange': 'Lenguage was changed.',
+          'withoutUsers': 'There are no users in the database.',
+          'notLogin': 'You can not make login.',
+          'notFoundUser': 'Not found user',
+          'successfulLogout': 'logout',
+          'failedLogout': "Could not logout.",
+          'succesfulDeleteUser': 'Delete user.',
+          'failedDeleteUser': 'Could not delete user',
+          'succesfulNewAdmin': 'Added as admin.',
+          'failedNewAdmin': 'Could not added as admin.',
+          'failedRegister': 'Could not register'
         }
       },
       es: {
         translation: {
-          'lengChange': 'Se cambio el idioma.'
+          'lengChange': 'Se cambio el idioma.',
+          'withoutUsers': 'No hay usuarios en la Base de datos.',
+          'notLogin': 'No pudiste iniciar sesion.',
+          'notFoundUser': 'Usuario no encontrado.',
+          'successfulLogout': 'logout',
+          'failedLogout': "No se pudo cerrar sesion.",
+          'succesfulDeleteUser': 'Usuario eliminado.',
+          'failedDeleteUser': 'No se pudo borrar el usuario',
+          'succesfulNewAdmin': 'Se añadio como admin.',
+          'failedNewAdmin': 'No se pudo añadir como admin.',
+          'failedRegister': 'No has podido iniciar sesion.'
         }
       },
       cat: {
         translation: {
-          'lengChange': "L'idioma ha canviat."
+          'lengChange': "L'idioma ha canviat.",
+          'withoutUsers': 'No hi ha usuaris a la Base de dades.',
+          'notLogin': 'No has pogut iniciar sessio.',
+          'notFoundUser': 'Usuario no trobat.',
+          'successfulLogout': 'logout',
+          'failedLogout': "No s'ha pogut tanca sessio.",
+          'succesfulDeleteUser': 'Usuari esborrat.',
+          'failedDeleteUser': "No s'ha pogut esborrar l'usuari.",
+          'succesfulNewAdmin': "S'ha afegit com a admin.",
+          'failedNewAdmin': "No s'ha pogut afegit com a admin.",
+          'failedRegister': 'No has pogut iniciar sessio.'
         }
       }
     }

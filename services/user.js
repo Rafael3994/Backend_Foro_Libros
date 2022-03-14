@@ -40,8 +40,7 @@ exports.register = async (email, password, name) => {
                     return Promise.reject(error);
                 })
         }
-        //TODO: mirar para traducir
-        return Promise.reject('No se pudo crear.');
+        return Promise.resolve(false);
     } catch (error) {
         return Promise.reject(error);
     }
@@ -51,11 +50,9 @@ exports.login = async (email, password) => {
     try {
         const user = await UserModel.findByCredentials(email, password);
         if (!user) {
-            //TODO: mirar para traducir
-            return Promise.resolve('No pudiste iniciar sesion.');
+            return Promise.resolve(false);
         }
         const UserWithToken = await user.generateAuthToken();
-        // console.log(UserWithToken);
         return Promise.resolve(UserWithToken);
     } catch (error) {
         return Promise.reject(error);
