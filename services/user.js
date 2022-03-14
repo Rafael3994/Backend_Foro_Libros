@@ -75,3 +75,15 @@ exports.logout = async (email, token) => {
         return Promise.reject(error);
     }
 }
+
+exports.deleteuserbyid = (idUser) => {
+    try {
+        return UserModel.deleteOne({ _id: idUser }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error)
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
