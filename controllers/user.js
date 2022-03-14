@@ -96,3 +96,28 @@ exports.deleteuser = async (req, res, next) => {
         return res.status(500).json(error);
     }
 }
+
+exports.newadmin = async (req, res, next) => {
+    try {
+        const response = await UserService.newadmin(req.body.idUser);
+        if (response) {
+            //TODO: mirar para traducir
+            return res.status(200).json('Se añadio como admin.');
+        }
+        //TODO: mirar para traducir
+        return res.status(200).json('No se pudo añadir como admin.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.edituser = async (req, res, next) => {
+    try {
+        const { name, email, password, photo } = req.body;
+        const response = await UserService.edituser(req.user._id, name, email, password, photo);
+        console.log(response);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}

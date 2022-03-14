@@ -87,3 +87,37 @@ exports.deleteuser = (idUser) => {
         return Promise.reject(error);
     }
 }
+
+exports.newadmin = (idUser) => {
+    try {
+        return UserModel.findOneAndUpdate({ _id: idUser }, {
+            $set: { roles: ['user', 'admin'] }
+        }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.edituser = async (idUser, name, email, password, photo) => {
+    try {
+        const user = await UserModel.findOne({ _id: idUser });
+        name === "" ? name = user.name : name = name
+        email === "" ? email = user.email : email = email
+        password === "" ? password = user.password : password = await bcrypt.hash(password, SALTROUNDS);
+        photo === "" ? photo = user.photo : photo = photo
+        // Compruebo que el email no exista
+        const userEmail = await UserModel.find({ email: email });
+        if (userEmail.length <= 1) {
+            const filter = { _id: idUser };
+            const update = { name: name, email: email, password: password, photo: photo };
+            return UserModel.findOneAndUpdate(filter, update);
+        }
+        return Promise.reject(false);
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
