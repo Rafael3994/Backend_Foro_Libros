@@ -30,7 +30,7 @@ router.get('/logout', auth, UserController.logout);
 router.delete('/deleteuserbyid', auth, UserController.deleteuserbyid);
 
 // ELIMINAR USER BY TOKEN
-// router.delete('/deleteuser', auth, UserController.deleteuser);
+router.delete('/deleteuser', auth, UserController.deleteuser);
 
 // EDITAR USER
 

@@ -76,7 +76,7 @@ exports.logout = async (email, token) => {
     }
 }
 
-exports.deleteuserbyid = (idUser) => {
+exports.deleteuser = (idUser) => {
     try {
         return UserModel.deleteOne({ _id: idUser }).then(res => {
             return Promise.resolve(res);

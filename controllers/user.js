@@ -71,7 +71,21 @@ exports.logout = async (req, res, next) => {
 
 exports.deleteuserbyid = async (req, res, next) => {
     try {
-        const response = await UserService.deleteuserbyid(req.body.idUser);
+        const response = await UserService.deleteuser(req.body.idUser);
+        if (response.deletedCount === 1) {
+            //TODO: mirar para traducir
+            return res.status(200).json('El usuario se elimino.');
+        }
+        //TODO: mirar para traducir
+        return res.status(200).json('No se pudo eliminar.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.deleteuser = async (req, res, next) => {
+    try {
+        const response = await UserService.deleteuser(req.user._id);
         if (response.deletedCount === 1) {
             //TODO: mirar para traducir
             return res.status(200).json('El usuario se elimino.');
