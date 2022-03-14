@@ -16,7 +16,6 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
     "mongoose": "^6.2.6",
     "morgan": "~1.9.1"
   },
