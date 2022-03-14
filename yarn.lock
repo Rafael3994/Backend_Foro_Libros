@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@babel/runtime@^7.17.2":
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.2.tgz#66f68591605e59da47523c631416b18508779941"
+  integrity sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@mapbox/node-pre-gyp@^1.0.0":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.8.tgz#32abc8a5c624bc4e46c43d84dfb8b26d33a96f58"
@@ -719,6 +726,13 @@ https-proxy-agent@^5.0.0:
     agent-base "6"
     debug "4"
 
+i18next@^21.6.14:
+  version "21.6.14"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.6.14.tgz#2bc199fba7f4da44b5952d7df0a3814a6e5c3943"
+  integrity sha512-XL6WyD+xlwQwbieXRlXhKWoLb/rkch50/rA+vl6untHnJ+aYnkQ0YDZciTWE78PPhOpbi2gR0LTJCJpiAhA+uQ==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+
 iconv-lite@0.4.23:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
@@ -1345,6 +1359,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+regenerator-runtime@^0.13.4:
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
 registry-auth-token@^4.0.0:
   version "4.2.1"
