@@ -60,7 +60,7 @@ router.post('/newlibro', LibroController.newLibro)
 router.delete('/deletelibro', LibroController.deleteLibro)
 
 // EDITAR LIBRO
-
+router.put('/editlibro', LibroController.editLibro)
 
 
 module.exports = router;

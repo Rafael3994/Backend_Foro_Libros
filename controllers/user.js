@@ -115,6 +115,7 @@ exports.newadmin = async (req, res, next) => {
 
 exports.edituser = async (req, res, next) => {
     try {
+        //TODO: mirar respuesta
         const { name, email, password, photo } = req.body;
         const response = await UserService.edituser(req.user._id, name, email, password, photo);
         console.log(response);

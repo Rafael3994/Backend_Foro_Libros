@@ -8,8 +8,6 @@ var mongoose = require('mongoose');
 var router = require('./routes/router');
 const i18next = require('i18next');
 
-require('dotenv').config()
-
 i18nextInit();
 connect();
 
@@ -79,7 +77,8 @@ async function i18nextInit() {
           'notFoundLibro': 'Not found book.',
           'failedNewAdmin': 'Could not make new book.',
           'succesfulDeleteLibro': 'Delete book.',
-          'failedDeleteLibro': 'Could not delete book'
+          'failedDeleteLibro': 'Could not delete book',
+          'failedEditLibro': 'Could not edit book.'
         }
       },
       es: {
@@ -99,7 +98,8 @@ async function i18nextInit() {
           'notFoundLibro': 'No se encontro el libro.',
           'failedNewLibro': 'No se pudo crear el libro.',
           'succesfulDeleteLibro': 'Libro eliminado.',
-          'failedDeleteLibro': 'No se pudo eliminar el libro.'
+          'failedDeleteLibro': 'No se pudo eliminar el libro.',
+          'failedEditLibro': 'No se pudo modicar el libro.'
         }
       },
       cat: {
@@ -119,7 +119,8 @@ async function i18nextInit() {
           'notFoundLibro': 'Llibre no trobar.',
           'failedNewAdmin': "No s'ha pogut crear al nou llibre.",
           'succesfulDeleteLibro': 'Llibre esborrat.',
-          'failedDeleteLibro': "No s'ha pogut esborrar el llibre."
+          'failedDeleteLibro': "No s'ha pogut esborrar el llibre.",
+          'failedEditLibro': "No s'ha pogut modificar el llibre."
         }
       }
     }

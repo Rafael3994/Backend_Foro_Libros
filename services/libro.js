@@ -56,3 +56,21 @@ exports.deleteLibro = (idLibro) => {
         return Promise.reject(error);
     }
 }
+
+exports.editLibro = async (idLibro, nombre, autor, descripcion, fecha_publicacion, paginas, caratula, capitulos) => {
+    try {
+        const libro = await LibroModel.findOne({ _id: idLibro });
+        nombre === "" ? nombre = libro.nombre : nombre = nombre;
+        autor === "" ? autor = libro.autor : autor = autor;
+        descripcion === "" ? descripcion = libro.descripcion : descripcion = descripcion;
+        fecha_publicacion === "" ? fecha_publicacion = libro.fecha_publicacion : fecha_publicacion = fecha_publicacion;
+        paginas === "" ? paginas = libro.paginas : paginas = paginas;
+        caratula === "" ? caratula = libro.caratula : caratula = caratula;
+        capitulos === "" ? capitulos = libro.capitulos : capitulos = capitulos;
+        const filter = { _id: idLibro };
+        const update = { nombre: nombre, autor: autor, descripcion: descripcion, fecha_publicacion: fecha_publicacion, paginas: paginas, caratula: caratula, capitulos: capitulos};
+        return LibroModel.findOneAndUpdate(filter, update);
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}

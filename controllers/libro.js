@@ -55,3 +55,17 @@ exports.deleteLibro = async (req, res, next) => {
         return res.status(500).json(error);
     }
 }
+
+exports.editLibro = async (req, res, next) => {
+    try {
+        const { idLibro, nombre, autor, descripcion, fecha_publicacion, paginas, caratula, capitulos } = req.body;
+        const editLibro = await LibroService.editLibro(idLibro, nombre, autor, descripcion, fecha_publicacion, paginas, caratula, capitulos);
+        if (editLibro) {
+            return res.status(200).json(editLibro);
+        }
+        const message = i18next.t('failedEditLibro')
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
