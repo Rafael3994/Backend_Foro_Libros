@@ -34,8 +34,23 @@ exports.newLibro = async (req, res, next) => {
         if (newlibro) {
             return res.status(200).json(newlibro);
         }
-        //TODO: Traducir
-        return res.status(200).json('No se pudo crear el libro.');
+        const response = i18next.t('failedNewLibro')
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.deleteLibro = async (req, res, next) => {
+    try {
+        const { idLibro } = req.body;
+        const deleteLibro = await LibroService.deleteLibro(idLibro);
+        if (deleteLibro.deletedCount === 1) {
+            const message = i18next.t('succesfulDeleteLibro')
+            return res.status(200).json(message);
+        }
+        const message = i18next.t('failedDeleteLibro')
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }

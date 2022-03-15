@@ -56,9 +56,11 @@ router.get('/getlibro', LibroController.getAllLibrosById)
 // CREAR LIBRO
 router.post('/newlibro', LibroController.newLibro)
 
+// ELIMINAR LIBRO
+router.delete('/deletelibro', LibroController.deleteLibro)
+
 // EDITAR LIBRO
 
-// ELIMINAR LIBRO
 
 
 module.exports = router;

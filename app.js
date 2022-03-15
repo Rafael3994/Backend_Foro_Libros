@@ -76,7 +76,10 @@ async function i18nextInit() {
           'failedNewAdmin': 'Could not added as admin.',
           'failedRegister': 'Could not register',
           'withoutLibros': 'Without books.',
-          'notFoundLibro': 'Not found book.'
+          'notFoundLibro': 'Not found book.',
+          'failedNewAdmin': 'Could not make new book.',
+          'succesfulDeleteLibro': 'Delete book.',
+          'failedDeleteLibro': 'Could not delete book'
         }
       },
       es: {
@@ -93,7 +96,10 @@ async function i18nextInit() {
           'failedNewAdmin': 'No se pudo añadir como admin.',
           'failedRegister': 'No has podido iniciar sesion.',
           'withoutLibros': 'No hay libros.',
-          'notFoundLibro': 'No se encontro el libro.'
+          'notFoundLibro': 'No se encontro el libro.',
+          'failedNewLibro': 'No se pudo crear el libro.',
+          'succesfulDeleteLibro': 'Libro eliminado.',
+          'failedDeleteLibro': 'No se pudo eliminar el libro.'
         }
       },
       cat: {
@@ -110,7 +116,10 @@ async function i18nextInit() {
           'failedNewAdmin': "No s'ha pogut afegit com a admin.",
           'failedRegister': 'No has pogut iniciar sessio.',
           'withoutLibros': 'Sense llibres.',
-          'notFoundLibro': 'Llibre no trobar.'
+          'notFoundLibro': 'Llibre no trobar.',
+          'failedNewAdmin': "No s'ha pogut crear al nou llibre.",
+          'succesfulDeleteLibro': 'Llibre esborrat.',
+          'failedDeleteLibro': "No s'ha pogut esborrar el llibre."
         }
       }
     }

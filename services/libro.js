@@ -44,3 +44,15 @@ exports.newLibro = (nombre, autor, descripcion, fecha_publicacion, paginas, cara
         return Promise.reject(error);
     }
 }
+
+exports.deleteLibro = (idLibro) => {
+    try {
+        return LibroModel.deleteOne({ _id: idLibro }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error)
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
