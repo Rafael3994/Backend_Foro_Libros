@@ -75,7 +75,8 @@ async function i18nextInit() {
           'succesfulNewAdmin': 'Added as admin.',
           'failedNewAdmin': 'Could not added as admin.',
           'failedRegister': 'Could not register',
-          'withoutLibros': 'Without books.'
+          'withoutLibros': 'Without books.',
+          'notFoundLibro': 'Not found book.'
         }
       },
       es: {
@@ -91,7 +92,8 @@ async function i18nextInit() {
           'succesfulNewAdmin': 'Se añadio como admin.',
           'failedNewAdmin': 'No se pudo añadir como admin.',
           'failedRegister': 'No has podido iniciar sesion.',
-          'withoutLibros': 'No hay libros.'
+          'withoutLibros': 'No hay libros.',
+          'notFoundLibro': 'No se encontro el libro.'
         }
       },
       cat: {
@@ -107,7 +109,8 @@ async function i18nextInit() {
           'succesfulNewAdmin': "S'ha afegit com a admin.",
           'failedNewAdmin': "No s'ha pogut afegit com a admin.",
           'failedRegister': 'No has pogut iniciar sessio.',
-          'withoutLibros': 'Sense llibres.'
+          'withoutLibros': 'Sense llibres.',
+          'notFoundLibro': 'Llibre no trobar.'
         }
       }
     }

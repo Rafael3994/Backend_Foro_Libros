@@ -48,11 +48,13 @@ router.get('/seeder', async function (req, res, next) {
 });
 
 // VER TODOS LOS LIBROS
-router.get('/allLibros', LibroController.getAllLibros)
+router.get('/alllibros', LibroController.getAllLibros)
 
 // VER UN LIBRO
+router.get('/getlibro', LibroController.getAllLibrosById)
 
 // CREAR LIBRO
+router.post('/newlibro', LibroController.newLibro)
 
 // EDITAR LIBRO
 
