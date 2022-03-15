@@ -78,7 +78,8 @@ async function i18nextInit() {
           'failedNewAdmin': 'Could not make new book.',
           'succesfulDeleteLibro': 'Delete book.',
           'failedDeleteLibro': 'Could not delete book',
-          'failedEditLibro': 'Could not edit book.'
+          'failedEditLibro': 'Could not edit book.',
+          'withoutComentarios': 'There are no comments.'
         }
       },
       es: {
@@ -99,7 +100,8 @@ async function i18nextInit() {
           'failedNewLibro': 'No se pudo crear el libro.',
           'succesfulDeleteLibro': 'Libro eliminado.',
           'failedDeleteLibro': 'No se pudo eliminar el libro.',
-          'failedEditLibro': 'No se pudo modicar el libro.'
+          'failedEditLibro': 'No se pudo modicar el libro.',
+          'withoutComentarios': 'No hay comentarios.'
         }
       },
       cat: {
@@ -120,7 +122,8 @@ async function i18nextInit() {
           'failedNewAdmin': "No s'ha pogut crear al nou llibre.",
           'succesfulDeleteLibro': 'Llibre esborrat.',
           'failedDeleteLibro': "No s'ha pogut esborrar el llibre.",
-          'failedEditLibro': "No s'ha pogut modificar el llibre."
+          'failedEditLibro': "No s'ha pogut modificar el llibre.",
+          'withoutComentarios': 'No hi ha comentaris.'
         }
       }
     }

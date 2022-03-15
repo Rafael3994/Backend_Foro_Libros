@@ -1,6 +1,6 @@
-const { then } = require('../config/mongoose');
 var LibroModel = require('../models/LibroModel');
 
+///////////////////////////////// LIBRO /////////////////////////////////////////
 exports.getAllLibros = () => {
     try {
         return LibroModel.find().then(res => {
@@ -25,7 +25,7 @@ exports.getLibroById = (idLibro) => {
     }
 }
 
-exports.newLibro = (nombre, autor, descripcion, fecha_publicacion, paginas, caratula, capitulos) => {
+exports.newLibro = (nombre, autor, descripcion, fecha_publicacion, paginas, caratula, capitulos,) => {
     try {
         return LibroModel.create({
             nombre: nombre,
@@ -68,9 +68,49 @@ exports.editLibro = async (idLibro, nombre, autor, descripcion, fecha_publicacio
         caratula === "" ? caratula = libro.caratula : caratula = caratula;
         capitulos === "" ? capitulos = libro.capitulos : capitulos = capitulos;
         const filter = { _id: idLibro };
-        const update = { nombre: nombre, autor: autor, descripcion: descripcion, fecha_publicacion: fecha_publicacion, paginas: paginas, caratula: caratula, capitulos: capitulos};
+        const update = { nombre: nombre, autor: autor, descripcion: descripcion, fecha_publicacion: fecha_publicacion, paginas: paginas, caratula: caratula, capitulos: capitulos };
         return LibroModel.findOneAndUpdate(filter, update);
     } catch (error) {
         return Promise.reject(error);
     }
 }
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// COMENTARIO LIBRO /////////////////////////////////
+exports.getAllComentariosLibro = (idLibro) => {
+    try {
+        return LibroModel.findById(idLibro, 'comentarios').then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.newcomentarioLibro = (idUser, idLibro, comentarioDesc) => {
+    try {
+        return LibroModel.findOneAndUpdate({ _id: idLibro }, {
+            $addToSet: {
+                comentarios: [{
+                    comentario: {
+                        idUser: idUser,
+                        comentarioDesc: comentarioDesc
+                    }
+                }]
+            }
+        }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// CAPITULO //////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// COMENTARIO CAPITULO //////////////////////////////
