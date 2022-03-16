@@ -91,9 +91,8 @@ exports.getAllComentariosLibro = async (req, res, next) => {
     }
 }
 
-exports.newcomentarioLibro = async (req, res, next) => {
+exports.newComentarioLibro = async (req, res, next) => {
     try {
-        console.log(req.user._id.toString());
         const idUser = req.user._id.toString();
         const { idLibro, comentarioDesc } = req.body;
         const newComentario = await LibroService.newcomentarioLibro(idUser, idLibro, comentarioDesc);
@@ -108,11 +107,150 @@ exports.newcomentarioLibro = async (req, res, next) => {
     }
 }
 
+exports.editComentarioLibro = async (req, res, next) => {
+    try {
+        const { idComentario, comentarioDesc } = req.body;
+        const editComentarioLibro = await LibroService.editComentarioLibro(idComentario, comentarioDesc);
+        //TODO: Traducir
+        return res.status(200).json(editComentarioLibro);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+}
 
-
+exports.deleteComentarioLibro = async (req, res, next) => {
+    try {
+        const { idComentario } = req.body;
+        const deleteComentario = await LibroService.deleteComentarioLibro(idComentario);
+        if (deleteComentario.deletedCount === 1) {
+            //TODO: Traducir
+            const message = i18next.t('succesfulDeleteLibro')
+            return res.status(200).json(message);
+        }
+        //TODO: Traducir
+        const message = i18next.t('failedDeleteLibro')
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CAPITULO /////////////////////////////////////
+exports.getCapitulo = async (req, res, next) => {
+    try {
+        const { idLibro, idCapitulo } = req.body;
+        const capitulo = await LibroService.getCapitulo(idLibro, idCapitulo);
+        if (capitulo) {
+            return res.status(200).json(capitulo);
+        }
+        //TODO: Traducir
+        return res.status(401).json('El capitulo no exite.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.newCapitulo = async (req, res, next) => {
+    try {
+        const { idLibro, nombreCap, paginas } = req.body;
+        const newCapitulo = await LibroService.newCapitulo(idLibro, nombreCap, paginas);
+        if (!newCapitulo) {
+            // TODO: Traducir
+            return res.status(200).json('No se añadio el capitulo.');
+        }
+        // TODO: Traducir
+        return res.status(200).json('Capitulo añadido.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.editCapitulo = async (req, res, next) => {
+    try {
+        const { idLibro, idCapitulo, nombreCap, paginas } = req.body;
+        const editCapitulo = await LibroService.editCapitulo(idLibro, idCapitulo, nombreCap, paginas);
+        //TODO: Traducir
+        return res.status(200).json(editCapitulo);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.deleteCapitulo = async (req, res, next) => {
+    try {
+        const { idLibro, idCapitulo } = req.body;
+        const deleteCapitulo = await LibroService.deleteCapitulo(idLibro, idCapitulo);
+        if (deleteCapitulo.deletedCount === 1) {
+            //TODO: Traducir
+            const message = i18next.t('succesfulDeleteLibro')
+            return res.status(200).json(message);
+        }
+        //TODO: Traducir
+        const message = i18next.t('failedDeleteLibro')
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////////
-////////////////////////////// COMENTARIO CAPITULO //////////////////////////
+////////////////////////////// COMENTARIO CAPITULO //////////////////////////////
+exports.getAllComentariosCap = async (req, res, next) => {
+    try {
+        const { idLibro, idCapitulo } = req.body;
+        const comentarios = await LibroService.getAllComentariosCap(idLibro, idCapitulo);
+        if (comentarios) {
+            return res.status(200).json(comentarios);
+        }
+        //TODO: Traducir
+        return res.status(401).json('No hay comentarios.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.newComentarioCap = async (req, res, next) => {
+    try {
+        const { idUser } = req.user._id.toString();
+        const { idLibro, idCapitulo } = req.body;
+        const newcomentarios = await LibroService.getAllComentariosCap(idUser, idLibro, idCapitulo);
+        if (newcomentarios) {
+            return res.status(200).json(newcomentarios);
+        }
+        //TODO: Traducir
+        return res.status(401).json('No hay comentarios.');
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
+exports.editComentarioCap = async (req, res, next) => {
+    try {
+        const { idLibro, idCapitulo, idComentario, comentarioDesc } = req.body;
+        const editComentarioCap = await LibroService.editComentarioCap(idLibro, idCapitulo, idComentario, comentarioDesc);
+        //TODO: Traducir
+        return res.status(200).json(editComentarioCap);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(error);
+    }
+}
+
+exports.deleteComentarioCap = async (req, res, next) => {
+    try {
+        const { idLibro, idCapitulo, idComentario } = req.body;
+        const deleteComentario = await LibroService.deleteComentarioCap(idLibro, idCapitulo, idComentario);
+        if (deleteComentario.deletedCount === 1) {
+            //TODO: Traducir
+            const message = i18next.t('succesfulDeleteLibro')
+            return res.status(200).json(message);
+        }
+        //TODO: Traducir
+        const message = i18next.t('failedDeleteLibro')
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}

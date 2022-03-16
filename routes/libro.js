@@ -70,34 +70,52 @@ router.put('/editlibro', LibroController.editLibro)
 router.get('/comentariolibro/getall', LibroController.getAllComentariosLibro)
 
 // AÑADIR UN COMENTARIO EN UN LIBRO
-router.post('/comentariolibro/newcomentario', auth, LibroController.newcomentarioLibro)
+router.post('/comentariolibro/newcomentario', auth, LibroController.newComentarioLibro)
 
 // EDITAR UN COMENTARIO EN UN LIBRO
+// TODO: NO FUNCIONA
+router.put('/comentariolibro/editcomentario', LibroController.editComentarioLibro)
 
 // ELIMINAR UN COMENTARIO EN UN LIBRO
+// TODO: NO FUNCIONA
+router.delete('/comentariolibro/deletecomentario', LibroController.deleteComentarioLibro)
 
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// CAPITULOS ///////////////////////////////////////
 // VER CAPITULO
+// TODO: NO FUNCIONA
+router.get('/capitulo/getcapitulo', LibroController.getCapitulo)
 
 // AÑADIR CAPITULO
+// TODO: NO FUNCIONA
+router.post('/capitulo/newcapitulo', LibroController.newCapitulo)
 
 // EDITAR CAPITULO
+// TODO: NO FUNCIONA
+router.put('/capitulo/editcapitulo', LibroController.editCapitulo)
 
 // ELIMINAR CAPITULO
+// TODO: NO FUNCIONA
+router.delete('/capitulo/deletecapitulo', LibroController.deleteCapitulo)
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// COMENTARIOS CAPITULOS ///////////////////////////////
 // VER TODOS LOS COMENTARIOS DE UN CAPITULO
-// router.get('/comentariocap/getall', LibroController.getAllLibros)
+// TODO: NO FUNCIONA
+router.get('/comentariocap/getall', LibroController.getAllComentariosCap)
 
 // AÑADIR UN COMENTARIO DE UN CAPITULO
+// TODO: NO FUNCIONA
+router.post('/comentariocap/newcomentario', LibroController.newComentarioCap)
 
 // EDITAR UN COMENTARIO DE UN CAPITULO
+// TODO: NO FUNCIONA
+router.put('/comentariocap/editcomentario', LibroController.editComentarioCap)
 
 // ELIMINAR UN COMENTARIO DE UN CAPITULO
-
+// TODO: NO FUNCIONA
+router.delete('/comentariocap/deletecomentario', LibroController.deleteComentarioCap)
 
 ///////////////////////////////////////////////////////////////////////////////////
 

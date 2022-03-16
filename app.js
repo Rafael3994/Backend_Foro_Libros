@@ -79,7 +79,8 @@ async function i18nextInit() {
           'succesfulDeleteLibro': 'Delete book.',
           'failedDeleteLibro': 'Could not delete book',
           'failedEditLibro': 'Could not edit book.',
-          'withoutComentarios': 'There are no comments.'
+          'withoutComentarios': 'There are no comments.',
+          'longestName': 'Put longest Name.'
         }
       },
       es: {
@@ -101,7 +102,8 @@ async function i18nextInit() {
           'succesfulDeleteLibro': 'Libro eliminado.',
           'failedDeleteLibro': 'No se pudo eliminar el libro.',
           'failedEditLibro': 'No se pudo modicar el libro.',
-          'withoutComentarios': 'No hay comentarios.'
+          'withoutComentarios': 'No hay comentarios.',
+          'longestName': 'Pon un nombre mas largo.'
         }
       },
       cat: {
@@ -123,7 +125,8 @@ async function i18nextInit() {
           'succesfulDeleteLibro': 'Llibre esborrat.',
           'failedDeleteLibro': "No s'ha pogut esborrar el llibre.",
           'failedEditLibro': "No s'ha pogut modificar el llibre.",
-          'withoutComentarios': 'No hi ha comentaris.'
+          'withoutComentarios': 'No hi ha comentaris.',
+          'longestName': 'Possa un nom mes llarg.'
         }
       }
     }

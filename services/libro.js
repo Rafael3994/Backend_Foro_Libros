@@ -108,9 +108,160 @@ exports.newcomentarioLibro = (idUser, idLibro, comentarioDesc) => {
         return Promise.reject(error);
     }
 }
+
+exports.editComentarioLibro = (idComentario, comentarioDesc) => {
+    try {
+        return LibroModel.find({ _id: '62309b7bf7e125db9b638e81' })
+            .then(res => {
+                return Promise.resolve(res);
+            }).catch(error => {
+                return Promise.reject(error);
+            })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.deleteComentarioLibro = (idComentario) => {
+    try {
+        return LibroModel.deleteOne({ _id: idComentario })
+            .then(res => {
+                return Promise.resolve(res);
+            }).catch(error => {
+                return Promise.reject(error);
+            })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// CAPITULO //////////////////////////////////////
+exports.getCapitulo = (idLibro, idCapitulo) => {
+    try {
+        return LibroModel.findOne({ _id: idCapitulo })
+            .then(res => {
+                return Promise.resolve(res);
+            }).catch(error => {
+                return Promise.reject(error);
+            })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
 
+exports.newCapitulo = (idLibro, nombreCap, paginas) => {
+    try {
+        paginas === "" ? paginas = null : paginas = paginas;
+        return LibroModel.findOneAndUpdate({ _id: idLibro }, {
+            $addToSet: {
+                capitulos: [{
+                    capitilo: {
+                        nombreCap: nombreCap,
+                        paginas: paginas
+                    }
+                }]
+            }
+        }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.editCapitulo = async (idLibro, idCapitulo, nombreCap, paginas) => {
+    try {
+        const capitulo = await LibroModel.findOne({ _id: idLibro, _id: idCapitulo });
+        nombreCap === "" ? nombreCap = capitulo.nombreCap : nombreCap = nombreCap;
+        paginas === "" ? paginas = capitulo.paginas : paginas = paginas;
+        return LibroModel.findOneAndUpdate(idCapitulo, {
+            nombreCap: nombreCap,
+            paginas: paginas
+        }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.deleteCapitulo = (idLibro, idCapitulo) => {
+    try {
+        return LibroModel.deleteOne({ _id: idLibro, _id: idCapitulo })
+            .then(res => {
+                return Promise.resolve(res);
+            }).catch(error => {
+                return Promise.reject(error);
+            })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// COMENTARIO CAPITULO //////////////////////////////
+exports.getAllComentariosCap = (idLibro, idCapitulo) => {
+    try {
+        return LibroModel.findById(idCapitulo, 'comentarios').then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.getAllComentariosCap = (idUser, idLibro, idCapitulo) => {
+    try {
+        return LibroModel.findOneAndUpdate({ _id: idLibro, _id: idCapitulo }, {
+            $addToSet: {
+                comentarios: [{
+                    comentario: {
+                        idUser: idUser,
+                        comentarioDesc: comentarioDesc
+                    }
+                }]
+            }
+        }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.editComentarioCap = (idLibro, idComentario, comentarioDesc) => {
+    try {
+        return LibroModel.find({ _id: idLibro, _id: idComentario }, {
+            comentarioDesc: comentarioDesc
+        })
+            .then(res => {
+                return Promise.resolve(res);
+            }).catch(error => {
+                return Promise.reject(error);
+            })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+exports.deleteComentarioCap = (idLibro, idCapitulo, idComentario) => {
+    try {
+        return LibroModel.deleteOne({ _id: idLibro, _id: idCapitulo, _id: idComentario })
+            .then(res => {
+                return Promise.resolve(res);
+            }).catch(error => {
+                return Promise.reject(error);
+            })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
