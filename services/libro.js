@@ -109,11 +109,23 @@ exports.newcomentarioLibro = (idUser, idLibro, comentarioDesc) => {
     }
 }
 
-exports.editComentarioLibro = (idComentario, comentarioDesc) => {
+exports.editComentarioLibro = (idLibro, idComentario, comentarioDesc) => {
     try {
-        return LibroModel.find({ _id: '62309b7bf7e125db9b638e81' })
-            .then(res => {
-                return Promise.resolve(res);
+        return LibroModel.findOne({ _id: idLibro })
+            .then(libro => {
+                if (!libro) {
+                    return Promise.reject(error);
+                }
+                console.log(libro.comentarios)
+                libro.comentarios.forEach(element => {
+                    console.log(element._id);
+                    if (element._id.toString() === idComentario) {
+                        console.log(element.comentario);
+                        element.comentario.comentarioDesc = comentarioDesc;
+                        libro.save();
+                        return Promise.resolve(element.comentario);
+                    }
+                });
             }).catch(error => {
                 return Promise.reject(error);
             })
@@ -139,9 +151,16 @@ exports.deleteComentarioLibro = (idComentario) => {
 ///////////////////////////////// CAPITULO //////////////////////////////////////
 exports.getCapitulo = (idLibro, idCapitulo) => {
     try {
-        return LibroModel.findOne({ _id: idCapitulo })
+        return LibroModel.findOne({ _id: idLibro })
             .then(res => {
-                return Promise.resolve(res);
+                console.log(res.capitulos.length);
+                for (let index = 0; index < res.capitulos.length; index++) {
+                    if (res.capitulos[index]._id.toString() === idCapitulo) {
+                        console.log(res.capitulos[index]);
+                        return Promise.resolve(res.capitulos[index]);
+                    }
+                }
+                return Promise.resolve('No fue bien.');
             }).catch(error => {
                 return Promise.reject(error);
             })
@@ -207,8 +226,15 @@ exports.deleteCapitulo = (idLibro, idCapitulo) => {
 ////////////////////////////// COMENTARIO CAPITULO //////////////////////////////
 exports.getAllComentariosCap = (idLibro, idCapitulo) => {
     try {
-        return LibroModel.findById(idCapitulo, 'comentarios').then(res => {
-            return Promise.resolve(res);
+        return LibroModel.findById(idLibro).then(res => {
+            // console.log(res.capitulos);
+            for (let index = 0; index < res.capitulos.length; index++) {
+                if (res.capitulos[index]._id.toString() === idCapitulo) {
+                    // console.log(res.capitulos[index].capitulo.comentarios);
+                    const comentarios = res.capitulos[index].capitulo.comentarios;
+                    return Promise.resolve(comentarios);
+                }
+            }
         }).catch(error => {
             return Promise.reject(error);
         })
@@ -217,7 +243,7 @@ exports.getAllComentariosCap = (idLibro, idCapitulo) => {
     }
 }
 
-exports.getAllComentariosCap = (idUser, idLibro, idCapitulo) => {
+exports.newComentariosCap = (idUser, idLibro, idCapitulo) => {
     try {
         return LibroModel.findOneAndUpdate({ _id: idLibro, _id: idCapitulo }, {
             $addToSet: {

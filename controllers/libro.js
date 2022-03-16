@@ -109,8 +109,8 @@ exports.newComentarioLibro = async (req, res, next) => {
 
 exports.editComentarioLibro = async (req, res, next) => {
     try {
-        const { idComentario, comentarioDesc } = req.body;
-        const editComentarioLibro = await LibroService.editComentarioLibro(idComentario, comentarioDesc);
+        const { idLibro, idComentario, comentarioDesc } = req.body;
+        const editComentarioLibro = await LibroService.editComentarioLibro(idLibro, idComentario, comentarioDesc);
         //TODO: Traducir
         return res.status(200).json(editComentarioLibro);
     } catch (error) {
@@ -215,7 +215,7 @@ exports.newComentarioCap = async (req, res, next) => {
     try {
         const { idUser } = req.user._id.toString();
         const { idLibro, idCapitulo } = req.body;
-        const newcomentarios = await LibroService.getAllComentariosCap(idUser, idLibro, idCapitulo);
+        const newcomentarios = await LibroService.newComentariosCap(idUser, idLibro, idCapitulo);
         if (newcomentarios) {
             return res.status(200).json(newcomentarios);
         }
