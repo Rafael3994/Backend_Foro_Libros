@@ -84,11 +84,9 @@ router.get('/comentariolibro/getall', LibroController.getAllComentariosLibro)
 router.post('/comentariolibro/newcomentario', auth, LibroController.newComentarioLibro)
 
 // EDITAR UN COMENTARIO EN UN LIBRO
-// TODO: NO FUNCIONA
 router.put('/comentariolibro/editcomentario', LibroController.editComentarioLibro)
 
 // ELIMINAR UN COMENTARIO EN UN LIBRO
-// TODO: NO FUNCIONA
 router.delete('/comentariolibro/deletecomentario', LibroController.deleteComentarioLibro)
 
 

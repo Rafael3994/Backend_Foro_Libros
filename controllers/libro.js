@@ -125,16 +125,14 @@ exports.editComentarioLibro = async (req, res, next) => {
 
 exports.deleteComentarioLibro = async (req, res, next) => {
     try {
-        const { idComentario } = req.body;
-        const deleteComentario = await LibroService.deleteComentarioLibro(idComentario);
-        if (deleteComentario.deletedCount === 1) {
+        const { idLibro, idComentario } = req.body;
+        const deleteComentario = await LibroService.deleteComentarioLibro(idLibro, idComentario);
+        if (!deleteComentario) {
             //TODO: Traducir
-            const message = i18next.t('succesfulDeleteLibro')
-            return res.status(200).json(message);
+            return res.status(401).json('No se puedo borrar el comentario.');
         }
         //TODO: Traducir
-        const message = i18next.t('failedDeleteLibro')
-        return res.status(200).json(message);
+        return res.status(200).json('Comentario borrado.');
     } catch (error) {
         return res.status(500).json(error);
     }

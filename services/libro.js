@@ -115,7 +115,7 @@ exports.editComentarioLibro = (idLibro, idComentario, comentarioDesc) => {
             .then(libro => {
                 if (!libro) {
                     //TODO: Traducir
-                    return Promise.resolve('Book was not found');
+                    return Promise.resolve(false);
                 }
                 let cometarioFound = false
                 libro.comentarios.forEach(element => {
@@ -138,13 +138,27 @@ exports.editComentarioLibro = (idLibro, idComentario, comentarioDesc) => {
     }
 }
 
-exports.deleteComentarioLibro = (idComentario) => {
+exports.deleteComentarioLibro = (idLibro, idComentario) => {
     try {
-        return LibroModel.deleteOne({ _id: idComentario })
-            .then(res => {
-                return Promise.resolve(res);
-            }).catch(error => {
-                return Promise.reject(error);
+        return LibroModel.findOne({ _id: idLibro })
+            .then(libro => {
+                if (!libro) {
+                    //TODO: Traducir
+                    return Promise.resolve(false);
+                }
+                let cometarioFound = false
+                libro.comentarios.forEach(comentarios => {
+                    if (comentarios._id.toString() === idComentario) {
+                        comentarios.remove();
+                        libro.save();
+                        cometarioFound = true
+                    }
+                })
+                if (cometarioFound) {
+                    return Promise.resolve(true);
+                } else {
+                    return Promise.resolve(false);
+                }
             })
     } catch (error) {
         return Promise.reject(error);
