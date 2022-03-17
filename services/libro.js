@@ -114,7 +114,6 @@ exports.editComentarioLibro = (idLibro, idComentario, comentarioDesc) => {
         return LibroModel.findOne({ _id: idLibro })
             .then(libro => {
                 if (!libro) {
-                    //TODO: Traducir
                     return Promise.resolve(false);
                 }
                 let cometarioFound = false
@@ -143,7 +142,6 @@ exports.deleteComentarioLibro = (idLibro, idComentario) => {
         return LibroModel.findOne({ _id: idLibro })
             .then(libro => {
                 if (!libro) {
-                    //TODO: Traducir
                     return Promise.resolve(false);
                 }
                 let cometarioFound = false
@@ -170,15 +168,18 @@ exports.deleteComentarioLibro = (idLibro, idComentario) => {
 exports.getCapitulo = (idLibro, idCapitulo) => {
     try {
         return LibroModel.findOne({ _id: idLibro })
-            .then(res => {
-                console.log(res.capitulos.length);
-                for (let index = 0; index < res.capitulos.length; index++) {
-                    if (res.capitulos[index]._id.toString() === idCapitulo) {
-                        console.log(res.capitulos[index]);
-                        return Promise.resolve(res.capitulos[index]);
+            .then(libro => {
+                if (!libro) {
+                    return Promise.resolve(false);
+                }
+                console.log(libro.capitulos.length);
+                for (let index = 0; index < libro.capitulos.length; index++) {
+                    if (libro.capitulos[index]._id.toString() === idCapitulo) {
+                        console.log(libro.capitulos[index]);
+                        return Promise.resolve(libro.capitulos[index]);
                     }
                 }
-                return Promise.resolve('No fue bien.');
+                return Promise.resolve(false);
             }).catch(error => {
                 return Promise.reject(error);
             })

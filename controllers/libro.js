@@ -148,7 +148,7 @@ exports.getCapitulo = async (req, res, next) => {
             return res.status(200).json(capitulo);
         }
         //TODO: Traducir
-        return res.status(401).json('El capitulo no exite.');
+        return res.status(401).json('No se encontro el capitulo.');
     } catch (error) {
         return res.status(500).json(error);
     }
