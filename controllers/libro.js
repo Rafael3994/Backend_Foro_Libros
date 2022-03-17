@@ -173,8 +173,12 @@ exports.editCapitulo = async (req, res, next) => {
     try {
         const { idLibro, idCapitulo, nombreCap, paginas } = req.body;
         const editCapitulo = await LibroService.editCapitulo(idLibro, idCapitulo, nombreCap, paginas);
-        //TODO: Traducir
-        return res.status(200).json(editCapitulo);
+        if (!editCapitulo) {
+            // TODO: Traducir
+            return res.status(200).json('No se modifico el capitulo.');
+        }
+        // TODO: Traducir
+        return res.status(200).json('Capitulo modificado.');
     } catch (error) {
         return res.status(500).json(error);
     }

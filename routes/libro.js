@@ -96,11 +96,9 @@ router.delete('/comentariolibro/deletecomentario', LibroController.deleteComenta
 router.get('/capitulo/getcapitulo', LibroController.getCapitulo)
 
 // AÑADIR CAPITULO
-// TODO: NO FUNCIONA
 router.post('/capitulo/newcapitulo', LibroController.newCapitulo)
 
 // EDITAR CAPITULO
-// TODO: NO FUNCIONA
 router.put('/capitulo/editcapitulo', LibroController.editCapitulo)
 
 // ELIMINAR CAPITULO
