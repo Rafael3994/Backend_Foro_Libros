@@ -114,18 +114,22 @@ exports.editComentarioLibro = (idLibro, idComentario, comentarioDesc) => {
         return LibroModel.findOne({ _id: idLibro })
             .then(libro => {
                 if (!libro) {
-                    return Promise.reject(error);
+                    //TODO: Traducir
+                    return Promise.resolve('Book was not found');
                 }
-                console.log(libro.comentarios)
+                let cometarioFound = false
                 libro.comentarios.forEach(element => {
-                    console.log(element._id);
                     if (element._id.toString() === idComentario) {
-                        console.log(element.comentario);
                         element.comentario.comentarioDesc = comentarioDesc;
                         libro.save();
-                        return Promise.resolve(element.comentario);
+                        cometarioFound = true;
                     }
                 });
+                if (cometarioFound) {
+                    return Promise.resolve(true);
+                } else {
+                    return Promise.resolve(false);
+                }
             }).catch(error => {
                 return Promise.reject(error);
             })

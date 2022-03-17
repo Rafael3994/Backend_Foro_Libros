@@ -111,8 +111,12 @@ exports.editComentarioLibro = async (req, res, next) => {
     try {
         const { idLibro, idComentario, comentarioDesc } = req.body;
         const editComentarioLibro = await LibroService.editComentarioLibro(idLibro, idComentario, comentarioDesc);
+        if (!editComentarioLibro) {
+            //TODO: Traducir
+            return res.status(401).json('No se puedo editar el comentario.');
+        }
         //TODO: Traducir
-        return res.status(200).json(editComentarioLibro);
+        return res.status(200).json('Comentario editado.');
     } catch (error) {
         console.log(error);
         return res.status(500).json(error);
