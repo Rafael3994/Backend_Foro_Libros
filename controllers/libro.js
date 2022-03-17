@@ -188,14 +188,12 @@ exports.deleteCapitulo = async (req, res, next) => {
     try {
         const { idLibro, idCapitulo } = req.body;
         const deleteCapitulo = await LibroService.deleteCapitulo(idLibro, idCapitulo);
-        if (deleteCapitulo.deletedCount === 1) {
+        if (!deleteCapitulo) {
             //TODO: Traducir
-            const message = i18next.t('succesfulDeleteLibro')
-            return res.status(200).json(message);
+            return res.status(401).json('No se borro el capitulo');
         }
         //TODO: Traducir
-        const message = i18next.t('failedDeleteLibro')
-        return res.status(200).json(message);
+        return res.status(200).json('Se borro el capitulo');
     } catch (error) {
         return res.status(500).json(error);
     }

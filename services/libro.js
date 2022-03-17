@@ -210,10 +210,6 @@ exports.newCapitulo = (idLibro, nombreCap, paginas) => {
 
 exports.editCapitulo = async (idLibro, idCapitulo, nombre, paginas) => {
     try {
-        // const capitulo = await this.getCapitulo(idLibro, idCapitulo);
-        // nombreCap === "" ? nombreCap = capitulo.nombreCap : nombreCap = nombreCap;
-        // paginas === "" ? paginas = capitulo.paginas : paginas = paginas;
-
         return LibroModel.findOne({ _id: idLibro })
             .then(libro => {
                 if (!libro) {
@@ -222,7 +218,6 @@ exports.editCapitulo = async (idLibro, idCapitulo, nombre, paginas) => {
                 let capituloFound = false
                 libro.capitulos.forEach(capitulos => {
                     if (capitulos._id.toString() === idCapitulo) {
-                        // console.log(capitulo);
                         nombre === "" ? nombre = capitulos.capitulo.nombreCap : nombre = nombre;
                         paginas === "" ? paginas = capitulos.capitulo.paginas : paginas = paginas;
 
@@ -241,11 +236,6 @@ exports.editCapitulo = async (idLibro, idCapitulo, nombre, paginas) => {
             }).catch(error => {
                 return Promise.reject(error);
             })
-        // capitulo.newCapitulo = nombreCap;
-        // capitulo.paginas = paginas;
-        // capitulo.save();
-        // return Promise.resolve(capitulo);
-
     } catch (error) {
         return Promise.reject(error);
     }
@@ -253,11 +243,26 @@ exports.editCapitulo = async (idLibro, idCapitulo, nombre, paginas) => {
 
 exports.deleteCapitulo = (idLibro, idCapitulo) => {
     try {
-        return LibroModel.deleteOne({ _id: idLibro, _id: idCapitulo })
-            .then(res => {
-                return Promise.resolve(res);
-            }).catch(error => {
-                return Promise.reject(error);
+        return LibroModel.findOne({ _id: idLibro })
+            .then(libro => {
+                if (!libro) {
+                    return Promise.resolve(false);
+                }
+                let capituloFound = false
+                // console.log(libro.capitulos);
+                libro.capitulos.forEach(capitulo => {
+                    if (capitulo._id.toString() === idCapitulo) {
+                        console.log(capitulo);
+                        capitulo.remove();
+                        libro.save();
+                        capituloFound = true;
+                    }
+                })
+                if (capituloFound) {
+                    return Promise.resolve(true);
+                } else {
+                    return Promise.resolve(false);
+                }
             })
     } catch (error) {
         return Promise.reject(error);
