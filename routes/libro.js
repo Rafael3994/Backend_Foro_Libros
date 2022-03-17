@@ -113,11 +113,9 @@ router.get('/comentariocap/getall', LibroController.getAllComentariosCap)
 router.post('/comentariocap/newcomentario', auth, LibroController.newComentarioCap)
 
 // EDITAR UN COMENTARIO DE UN CAPITULO
-// TODO: NO FUNCIONA
 router.put('/comentariocap/editcomentario', LibroController.editComentarioCap)
 
 // ELIMINAR UN COMENTARIO DE UN CAPITULO
-// TODO: NO FUNCIONA
 router.delete('/comentariocap/deletecomentario', LibroController.deleteComentarioCap)
 
 ///////////////////////////////////////////////////////////////////////////////////

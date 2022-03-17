@@ -321,15 +321,30 @@ exports.newComentariosCap = async (idUser, idLibro, idCapitulo, comentarioDesc) 
     }
 }
 
-exports.editComentarioCap = (idLibro, idComentario, comentarioDesc) => {
+exports.editComentarioCap = (idLibro, idCapitulo, idComentario, comentarioDesc) => {
     try {
-        return LibroModel.find({ _id: idLibro, _id: idComentario }, {
-            comentarioDesc: comentarioDesc
-        })
-            .then(res => {
-                return Promise.resolve(res);
-            }).catch(error => {
-                return Promise.reject(error);
+        return LibroModel.findOne({ _id: idLibro })
+            .then(libro => {
+                if (!libro) {
+                    return Promise.resolve(false);
+                }
+                let capituloFound = false
+                libro.capitulos.forEach(capitulos => {
+                    if (capitulos._id.toString() === idCapitulo) {
+                        capitulos.capitulo.comentarios.forEach(comentarios => {
+                            if (comentarios._id.toString() === idComentario) {
+                                comentarios.comentario.comentarioDesc = comentarioDesc;
+                                libro.save();
+                                capituloFound = true;
+                            }
+                        })
+                    }
+                })
+                if (capituloFound) {
+                    return Promise.resolve(true);
+                } else {
+                    return Promise.resolve(false);
+                }
             })
     } catch (error) {
         return Promise.reject(error);
