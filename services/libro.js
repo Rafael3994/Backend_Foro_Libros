@@ -194,7 +194,7 @@ exports.newCapitulo = (idLibro, nombreCap, paginas) => {
         return LibroModel.findOneAndUpdate({ _id: idLibro }, {
             $addToSet: {
                 capitulos: [{
-                    capitilo: {
+                    capitulo: {
                         nombreCap: nombreCap,
                         paginas: paginas
                     }
