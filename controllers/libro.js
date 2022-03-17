@@ -217,14 +217,15 @@ exports.getAllComentariosCap = async (req, res, next) => {
 
 exports.newComentarioCap = async (req, res, next) => {
     try {
-        const { idUser } = req.user._id.toString();
-        const { idLibro, idCapitulo } = req.body;
-        const newcomentarios = await LibroService.newComentariosCap(idUser, idLibro, idCapitulo);
-        if (newcomentarios) {
-            return res.status(200).json(newcomentarios);
+        const idUser = req.user._id.toString();
+        const { idLibro, idCapitulo, comentarioDesc } = req.body;
+        const newcomentarios = await LibroService.newComentariosCap(idUser, idLibro, idCapitulo, comentarioDesc);
+        if (!newcomentarios) {
+            //TODO: Traducir
+            return res.status(401).json('El comentario no se añadio.');
         }
         //TODO: Traducir
-        return res.status(401).json('No hay comentarios.');
+        return res.status(200).json('Comentario añadido. ');
     } catch (error) {
         return res.status(500).json(error);
     }
