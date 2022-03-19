@@ -80,7 +80,14 @@ async function i18nextInit() {
           'failedDeleteLibro': 'Could not delete book',
           'failedEditLibro': 'Could not edit book.',
           'withoutComentarios': 'There are no comments.',
-          'longestName': 'Put longest Name.'
+          'longestName': 'Put longest Name.',
+          'notFoundCapitulo': 'Not found chapter.',
+          'failedNewCapitulo': 'The chapter was not added.',
+          'succesfulNewCapitulo': "Added chapter.",
+          'failedEditCapitulo': 'The chapter was not edited.',
+          'succesfulEditCapitulo': 'Edited chapter.',
+          'failedDeleteCapitulo': 'The chapter was not deleted',
+          'succesfulDeleteCapitulo': "Deleted chapter "
         }
       },
       es: {
@@ -103,7 +110,14 @@ async function i18nextInit() {
           'failedDeleteLibro': 'No se pudo eliminar el libro.',
           'failedEditLibro': 'No se pudo modicar el libro.',
           'withoutComentarios': 'No hay comentarios.',
-          'longestName': 'Pon un nombre mas largo.'
+          'longestName': 'Pon un nombre mas largo.',
+          'notFoundCapitulo': 'No se encontro el capitulo.',
+          'failedNewCapitulo': 'El capitulo no se añadio.',
+          'succesfulNewCapitulo': "Capitulo añadido.",
+          'failedEditCapitulo': 'El capitilo no se modifico.',
+          'succesfulEditCapitulo': 'Capitulo modificado.',
+          'failedDeleteCapitulo': 'No se borro el capitulo',
+          'succesfulDeleteCapitulo': 'Capitulo borrado.'
         }
       },
       cat: {
@@ -126,7 +140,14 @@ async function i18nextInit() {
           'failedDeleteLibro': "No s'ha pogut esborrar el llibre.",
           'failedEditLibro': "No s'ha pogut modificar el llibre.",
           'withoutComentarios': 'No hi ha comentaris.',
-          'longestName': 'Possa un nom mes llarg.'
+          'longestName': 'Possa un nom mes llarg.',
+          'notFoundCapitulo': "No s'ha trobat el capitol.",
+          'failedNewCapitulo': "No s'ha afegit el capitol.",
+          'succesfulNewCapitulo': "Capitol afegit.",
+          'failedEditCapitulo': "El capitol no s'ha modificat.",
+          'succesfulEditCapitulo': 'Capitol modificat.',
+          'failedDeleteCapitulo': "Capitol no esborrat.",
+          'succesfulDeleteCapitulo': "Capitol esborrat."
         }
       }
     }

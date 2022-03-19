@@ -147,8 +147,8 @@ exports.getCapitulo = async (req, res, next) => {
         if (capitulo) {
             return res.status(200).json(capitulo);
         }
-        //TODO: Traducir
-        return res.status(401).json('No se encontro el capitulo.');
+        const message = i18next.t('notFoundCapitulo');
+        return res.status(401).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -159,11 +159,11 @@ exports.newCapitulo = async (req, res, next) => {
         const { idLibro, nombreCap, paginas } = req.body;
         const newCapitulo = await LibroService.newCapitulo(idLibro, nombreCap, paginas);
         if (!newCapitulo) {
-            // TODO: Traducir
-            return res.status(200).json('No se añadio el capitulo.');
+            const message = i18next.t('failedNewCapitulo');
+            return res.status(200).json(message);
         }
-        // TODO: Traducir
-        return res.status(200).json('Capitulo añadido.');
+        const message = i18next.t('succesfulNewCapitulo');
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -174,11 +174,11 @@ exports.editCapitulo = async (req, res, next) => {
         const { idLibro, idCapitulo, nombreCap, paginas } = req.body;
         const editCapitulo = await LibroService.editCapitulo(idLibro, idCapitulo, nombreCap, paginas);
         if (!editCapitulo) {
-            // TODO: Traducir
-            return res.status(200).json('No se modifico el capitulo.');
+            const message = i18next.t('failedEditCapitulo');
+            return res.status(200).json(message);
         }
-        // TODO: Traducir
-        return res.status(200).json('Capitulo modificado.');
+        const message = i18next.t('succesfulEditCapitulo');
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -189,11 +189,11 @@ exports.deleteCapitulo = async (req, res, next) => {
         const { idLibro, idCapitulo } = req.body;
         const deleteCapitulo = await LibroService.deleteCapitulo(idLibro, idCapitulo);
         if (!deleteCapitulo) {
-            //TODO: Traducir
-            return res.status(401).json('No se borro el capitulo');
+            const message = i18next.t('failedDeleteCapitulo');
+            return res.status(401).json(message);
         }
-        //TODO: Traducir
-        return res.status(200).json('Se borro el capitulo');
+        const message = i18next.t('succesfulDeleteCapitulo');
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
