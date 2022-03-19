@@ -76,13 +76,11 @@ exports.getAllComentariosLibro = async (req, res, next) => {
     try {
         const comentarios = await LibroService.getAllComentariosLibro(req.body.idLibro);
         if (comentarios === null) {
-            // TODO: Traducir
-            const message = i18next.t('withoutComentarios')
-            return res.status(401).json('Algo salio mal.');
+            const message = i18next.t('failedGetComentarios')
+            return res.status(401).json(message);
         } else if (comentarios.comentarios.length !== 0) {
             return res.status(200).json(comentarios);
         } else {
-            // TODO: Traducir
             const message = i18next.t('withoutComentarios')
             return res.status(200).json(message);
         }
@@ -97,11 +95,11 @@ exports.newComentarioLibro = async (req, res, next) => {
         const { idLibro, comentarioDesc } = req.body;
         const newComentario = await LibroService.newcomentarioLibro(idUser, idLibro, comentarioDesc);
         if (!newComentario) {
-            // TODO: Traducir
-            return res.status(200).json('No se añadio el comentario.');
+            const message = i18next.t('failedNewComentarios')
+            return res.status(401).json(message);
         }
-        // TODO: Traducir
-        return res.status(200).json('Comentario añadido.');
+        const message = i18next.t('succesfulNewComentarios')
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -112,11 +110,11 @@ exports.editComentarioLibro = async (req, res, next) => {
         const { idLibro, idComentario, comentarioDesc } = req.body;
         const editComentarioLibro = await LibroService.editComentarioLibro(idLibro, idComentario, comentarioDesc);
         if (!editComentarioLibro) {
-            //TODO: Traducir
-            return res.status(401).json('No se puedo editar el comentario.');
+            const message = i18next.t('failedEditComentarios')
+            return res.status(401).json(message);
         }
-        //TODO: Traducir
-        return res.status(200).json('Comentario editado.');
+        const message = i18next.t('succesfulEditComentarios')
+        return res.status(200).json(message);
     } catch (error) {
         console.log(error);
         return res.status(500).json(error);
@@ -128,11 +126,11 @@ exports.deleteComentarioLibro = async (req, res, next) => {
         const { idLibro, idComentario } = req.body;
         const deleteComentario = await LibroService.deleteComentarioLibro(idLibro, idComentario);
         if (!deleteComentario) {
-            //TODO: Traducir
-            return res.status(401).json('No se puedo borrar el comentario.');
+            const message = i18next.t('failedDeleteComentarios')
+            return res.status(401).json(message);
         }
-        //TODO: Traducir
-        return res.status(200).json('Comentario borrado.');
+        const message = i18next.t('succesfulDeleteComentarios')
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -205,11 +203,15 @@ exports.getAllComentariosCap = async (req, res, next) => {
     try {
         const { idLibro, idCapitulo } = req.body;
         const comentarios = await LibroService.getAllComentariosCap(idLibro, idCapitulo);
-        if (comentarios) {
+        if (comentarios === false) {
+            const message = i18next.t('failedGetComentarios')
+            return res.status(401).json(message);
+        } else if (comentarios.length !== 0) {
             return res.status(200).json(comentarios);
+        } else {
+            const message = i18next.t('withoutComentarios')
+            return res.status(200).json(message);
         }
-        //TODO: Traducir
-        return res.status(401).json('No hay comentarios.');
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -221,11 +223,11 @@ exports.newComentarioCap = async (req, res, next) => {
         const { idLibro, idCapitulo, comentarioDesc } = req.body;
         const newcomentarios = await LibroService.newComentariosCap(idUser, idLibro, idCapitulo, comentarioDesc);
         if (!newcomentarios) {
-            //TODO: Traducir
-            return res.status(401).json('El comentario no se añadio.');
+            const message = i18next.t('failedNewComentarios')
+            return res.status(401).json(message);
         }
-        //TODO: Traducir
-        return res.status(200).json('Comentario añadido. ');
+        const message = i18next.t('succesfulNewComentarios')
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }
@@ -236,11 +238,11 @@ exports.editComentarioCap = async (req, res, next) => {
         const { idLibro, idCapitulo, idComentario, comentarioDesc } = req.body;
         const editComentarioCap = await LibroService.editComentarioCap(idLibro, idCapitulo, idComentario, comentarioDesc);
         if (!editComentarioCap) {
-            //TODO: Traducir
-            return res.status(401).json('El comentario no se edito.');
+            const message = i18next.t('failedEditComentarios')
+            return res.status(401).json(message);
         }
-        //TODO: Traducir
-        return res.status(200).json('Comentario editado.');
+        const message = i18next.t('succesfulEditComentarios')
+        return res.status(200).json(message);
     } catch (error) {
         console.log(error);
         return res.status(500).json(error);
@@ -252,11 +254,11 @@ exports.deleteComentarioCap = async (req, res, next) => {
         const { idLibro, idCapitulo, idComentario } = req.body;
         const deleteComentario = await LibroService.deleteComentarioCap(idLibro, idCapitulo, idComentario);
         if (!deleteComentario) {
-            //TODO: Traducir
-            return res.status(401).json('El comentario no se borro.');
+            const message = i18next.t('failedDeleteComentarios')
+            return res.status(401).json(message);
         }
-        //TODO: Traducir
-        return res.status(200).json('Comentario borrado.');
+        const message = i18next.t('succesfulDeleteComentarios')
+        return res.status(200).json(message);
     } catch (error) {
         return res.status(500).json(error);
     }

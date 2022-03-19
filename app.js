@@ -86,8 +86,15 @@ async function i18nextInit() {
           'succesfulNewCapitulo': "Added chapter.",
           'failedEditCapitulo': 'The chapter was not edited.',
           'succesfulEditCapitulo': 'Edited chapter.',
-          'failedDeleteCapitulo': 'The chapter was not deleted',
-          'succesfulDeleteCapitulo': "Deleted chapter "
+          'failedDeleteCapitulo': 'The chapter was not deleted.',
+          'succesfulDeleteCapitulo': "Deleted chapter.",
+          'failedGetComentarios': 'Something went wrong.',
+          'failedNewComentarios': 'Comment was not added.',
+          'succesfulNewComentarios': 'Comment added.',
+          'failedEditComentarios': 'Comment was not edited.',
+          'succesfulEditComentarios': 'Edited comment.',
+          'failedDeleteComentarios': 'Comment was not deleted.',
+          'succesfulDeleteComentarios': 'Delete comment.'
         }
       },
       es: {
@@ -117,7 +124,14 @@ async function i18nextInit() {
           'failedEditCapitulo': 'El capitilo no se modifico.',
           'succesfulEditCapitulo': 'Capitulo modificado.',
           'failedDeleteCapitulo': 'No se borro el capitulo',
-          'succesfulDeleteCapitulo': 'Capitulo borrado.'
+          'succesfulDeleteCapitulo': 'Capitulo borrado.',
+          'failedGetComentarios': 'Algo fue mal.',
+          'failedNewComentarios': 'No se añadio el comentario.',
+          'succesfulNewComentarios': 'Comentario añadido.',
+          'failedEditComentarios': 'El comentario no se edito.',
+          'succesfulEditComentarios': 'Comentario modificado.',
+          'failedDeleteComentarios': 'No se puedo borrar el comentario.',
+          'succesfulDeleteComentarios': 'Comentario borrado.'
         }
       },
       cat: {
@@ -147,7 +161,14 @@ async function i18nextInit() {
           'failedEditCapitulo': "El capitol no s'ha modificat.",
           'succesfulEditCapitulo': 'Capitol modificat.',
           'failedDeleteCapitulo': "Capitol no esborrat.",
-          'succesfulDeleteCapitulo': "Capitol esborrat."
+          'succesfulDeleteCapitulo': "Capitol esborrat.",
+          'failedGetComentarios': 'Alguna cosa a sortit malament.',
+          'failedNewComentarios': 'Comentari no afegit.',
+          'succesfulNewComentarios': 'Comentari afegit.',
+          'failedEditComentarios': "El comentari no s'ha editat.",
+          'succesfulEditComentarios': 'Comentari modificat.',
+          'failedDeleteComentarios': "El comentari no s'ha esborrat.",
+          'succesfulDeleteComentarios': 'Comentari esborrat.'
         }
       }
     }

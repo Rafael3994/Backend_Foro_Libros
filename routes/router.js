@@ -13,7 +13,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.use('/lenguage', Lenguage);
-// TODO: Hacer middleware para que un usario solo pueda modificarse a asi mismo y no a los demas.
 router.use('/user', User);
 router.use('/libro', Libro);
 

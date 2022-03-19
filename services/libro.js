@@ -273,14 +273,22 @@ exports.deleteCapitulo = (idLibro, idCapitulo) => {
 ////////////////////////////// COMENTARIO CAPITULO //////////////////////////////
 exports.getAllComentariosCap = (idLibro, idCapitulo) => {
     try {
-        return LibroModel.findById(idLibro).then(res => {
-            // console.log(res.capitulos);
-            for (let index = 0; index < res.capitulos.length; index++) {
-                if (res.capitulos[index]._id.toString() === idCapitulo) {
-                    // console.log(res.capitulos[index].capitulo.comentarios);
-                    const comentarios = res.capitulos[index].capitulo.comentarios;
-                    return Promise.resolve(comentarios);
+        return LibroModel.findById(idLibro).then(libro => {
+            if (!libro) {
+                return Promise.resolve(false);
+            }
+            let capituloFound = false
+            let comentarios = null
+            libro.capitulos.forEach(capitulos => {
+                if (capitulos._id.toString() === idCapitulo){
+                    capituloFound = true;
+                    comentarios = capitulos.capitulo.comentarios;
                 }
+            })
+            if (capituloFound) {
+                return Promise.resolve(comentarios);
+            } else {
+                return Promise.resolve(false);
             }
         }).catch(error => {
             return Promise.reject(error);
@@ -294,7 +302,7 @@ exports.newComentariosCap = async (idUser, idLibro, idCapitulo, comentarioDesc) 
     try {
         const libro = await LibroModel.findOne({ _id: idLibro });
         if (!libro) {
-            return Promise.reject(false);
+            return Promise.resolve(false);
         }
         const newComentario = {
             comentario: {

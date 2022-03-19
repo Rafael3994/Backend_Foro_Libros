@@ -31,7 +31,6 @@ router.delete('/deleteuser', auth, UserController.deleteuser);
 router.put('/newadmin', [auth, validateData(userParamsIdSchema)], UserController.newadmin);
 
 // EDITAR USER (user, admin)
-//TODO: Pensar el como VALIDAR
 router.put('/edituser', auth, UserController.edituser);
 
 module.exports = router;
