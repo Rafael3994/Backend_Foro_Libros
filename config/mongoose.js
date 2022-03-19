@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+require('dotenv').config()
+
 
 // Mongodb Atlas
 console.log('MONGO_URI', process.env.MONGO_URI)

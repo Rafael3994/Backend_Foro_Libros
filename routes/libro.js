@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var LibroController = require('../controllers/libro');
+const auth = require('../middleware/auth');
 
 var LibroModel = require('../models/LibroModel');
+
 
 router.get('/seeder', async function (req, res, next) {
     let libro = await LibroModel.create({
@@ -26,7 +29,7 @@ router.get('/seeder', async function (req, res, next) {
         capitulos: [
             {
                 capitulo: {
-                    nombreCap: '1',
+                    nombreCap: 'Capitulo 1',
                     comentarios: [{
                         comentario: {
                             idUser: '622e21a45729247bb42d2931',
@@ -39,26 +42,82 @@ router.get('/seeder', async function (req, res, next) {
                             comentarioDesc: 'Increible final, el lord legislador los estaba protegiendo??'
                         }
                     }]
-                },
+                }
+            },
+            {
+                capitulo: {
+                    nombreCap: 'Capitulo 2',
+                    comentarios: [{
+                        comentario: {
+                            idUser: '622e21a45729247bb42d2931',
+                            comentarioDesc: 'ganas de empezar con el siguiente'
+                        }
+                    }]
+                }
             }
         ]
     });
     res.status(200).json('Libros de Backend Blog de libros.');
 });
 
+////////////////////////////////// LIBROS /////////////////////////////////////////
 // VER TODOS LOS LIBROS
-router.get('/allLibros', async function (req, res, next) {
-    const libros = await LibroModel.find({});
-    res.json(libros);
-});
+router.get('/alllibros', LibroController.getAllLibros)
 
 // VER UN LIBRO
+router.get('/getlibro', LibroController.getAllLibrosById)
 
 // CREAR LIBRO
-
-// EDITAR LIBRO
+router.post('/newlibro', LibroController.newLibro)
 
 // ELIMINAR LIBRO
+router.delete('/deletelibro', LibroController.deleteLibro)
 
+// EDITAR LIBRO
+router.put('/editlibro', LibroController.editLibro)
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////// COMENTARIOS LIBROS //////////////////////////////////
+// VER TODOS LOS COMENTARIOS DE LOS LIBROS
+router.get('/comentariolibro/getall', LibroController.getAllComentariosLibro)
+
+// AÑADIR UN COMENTARIO EN UN LIBRO
+router.post('/comentariolibro/newcomentario', auth, LibroController.newComentarioLibro)
+
+// EDITAR UN COMENTARIO EN UN LIBRO
+router.put('/comentariolibro/editcomentario', LibroController.editComentarioLibro)
+
+// ELIMINAR UN COMENTARIO EN UN LIBRO
+router.delete('/comentariolibro/deletecomentario', LibroController.deleteComentarioLibro)
+
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// CAPITULOS ///////////////////////////////////////
+// VER CAPITULO
+router.get('/capitulo/getcapitulo', LibroController.getCapitulo)
+
+// AÑADIR CAPITULO
+router.post('/capitulo/newcapitulo', LibroController.newCapitulo)
+
+// EDITAR CAPITULO
+router.put('/capitulo/editcapitulo', LibroController.editCapitulo)
+
+// ELIMINAR CAPITULO
+router.delete('/capitulo/deletecapitulo', LibroController.deleteCapitulo)
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////// COMENTARIOS CAPITULOS ///////////////////////////////
+// VER TODOS LOS COMENTARIOS DE UN CAPITULO
+router.get('/comentariocap/getall', LibroController.getAllComentariosCap)
+
+// AÑADIR UN COMENTARIO DE UN CAPITULO
+router.post('/comentariocap/newcomentario', auth, LibroController.newComentarioCap)
+
+// EDITAR UN COMENTARIO DE UN CAPITULO
+router.put('/comentariocap/editcomentario', LibroController.editComentarioCap)
+
+// ELIMINAR UN COMENTARIO DE UN CAPITULO
+router.delete('/comentariocap/deletecomentario', LibroController.deleteComentarioCap)
+
+///////////////////////////////////////////////////////////////////////////////////
 
 module.exports = router;
