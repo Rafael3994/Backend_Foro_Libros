@@ -4,7 +4,7 @@ var UserController = require('../controllers/user');
 var auth = require('../middleware/auth');
 var admin = require('../middleware/admin');
 var { validateData } = require('./../middleware/validate');
-var { userRegisterSchema, userLoginSchema, userParamsIdSchema } = require('./../schema/request-schema');
+var { userRegisterSchema, userLoginSchema, userParamsIdSchema, userUpdateSchema } = require('./../schema/request-schema');
 
 
 // VER TODOS LOS USERS (admin)
@@ -32,6 +32,6 @@ router.delete('/deleteuser', auth, UserController.deleteuser);
 router.put('/newadmin', [auth, admin, validateData(userParamsIdSchema)], UserController.newadmin);
 
 // EDITAR USER (user, admin)
-router.put('/edituser', auth, UserController.edituser);
+router.put('/edituser', [auth, validateData(userUpdateSchema)], UserController.edituser);
 
 module.exports = router;
