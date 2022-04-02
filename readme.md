@@ -1,7 +1,7 @@
 # Backend Foro de libros
 Este es un proyecto personal, trata de crear un backend y frontend para crear un foro de libros. En él los usuarios podran poner los comentarios de sus partes favoritas de los libros y capitulos de estos que mas les gusten.
 
-Repositorio Frontend:
+Repositorio Frontend: https://github.com/Rafael3994/Frontend_Foro_Libros
 
 
 ## Deploy de la aplicacion 🚀
