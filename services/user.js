@@ -99,6 +99,20 @@ exports.newadmin = (idUser) => {
     }
 }
 
+exports.neweditor = (idUser) => {
+    try {
+        return UserModel.findOneAndUpdate({ _id: idUser }, {
+            $set: { roles: ['user', 'editor'] }
+        }).then(res => {
+            return Promise.resolve(res);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
 exports.edituser = async (idUser, name, email, password, photo) => {
     try {
         const user = await UserModel.findOne({ _id: idUser });

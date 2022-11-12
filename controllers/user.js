@@ -113,6 +113,22 @@ exports.newadmin = async (req, res, next) => {
     }
 }
 
+exports.neweditor = async (req, res, next) => {
+    try {
+        const response = await UserService.neweditor(req.body.idUser);
+        if (response) {
+            // TODO: use i18
+            const message = 'succesfulNewEditor'
+            return res.status(200).json(message);
+        }
+        // TODO: use i18
+        const message = 'failedNewEditor'
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
 exports.edituser = async (req, res, next) => {
     try {
         const { name, email, password, photo } = req.body;

@@ -3,6 +3,7 @@ var router = express.Router();
 var LibroController = require('../controllers/libro');
 const auth = require('../middleware/auth');
 var admin = require('../middleware/admin');
+var editor = require('../middleware/editor');
 
 var LibroModel = require('../models/LibroModel');
 
@@ -69,13 +70,13 @@ router.get('/alllibros', auth, LibroController.getAllLibros)
 router.get('/getlibro', auth, LibroController.getAllLibrosById)
 
 // CREAR LIBRO (admin)
-router.post('/newlibro', [auth, admin], LibroController.newLibro)
+router.post('/newlibro', [auth, editor ], LibroController.newLibro)
 
 // ELIMINAR LIBRO (admin)
-router.delete('/deletelibro', [auth, admin], LibroController.deleteLibro)
+router.delete('/deletelibro', [auth, editor], LibroController.deleteLibro)
 
 // EDITAR LIBRO (admin)
-router.put('/editlibro', [auth, admin], LibroController.editLibro)
+router.put('/editlibro', [auth, editor], LibroController.editLibro)
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// COMENTARIOS LIBROS //////////////////////////////////

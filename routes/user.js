@@ -31,6 +31,9 @@ router.delete('/deleteuser', auth, UserController.deleteuser);
 // AÑADIR ROLE ADMIN A UN USER (admin)
 router.put('/newadmin', [auth, admin, validateData(userParamsIdSchema)], UserController.newadmin);
 
+// AÑADIR ROLE EDITOR A UN USER (admin)
+router.put('/neweditor', [auth, admin, validateData(userParamsIdSchema)], UserController.neweditor);
+
 // EDITAR USER (user, admin)
 router.put('/edituser', [auth, validateData(userUpdateSchema)], UserController.edituser);
 
