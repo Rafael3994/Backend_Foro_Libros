@@ -146,3 +146,22 @@ exports.edituser = async (idUser, name, email, password, photo) => {
         return Promise.reject(error);
     }
 }
+
+exports.editroleuser = async (idUser, newrole) => {
+    try {
+        const user = await UserModel.findOne({ _id: idUser });
+        if (!user) {
+            return Promise.reject(false);
+        }
+        const filter = { _id: idUser };
+        const update = {
+            roles: [
+                'user',
+                newrole
+            ]
+        };
+        return UserModel.findOneAndUpdate(filter, update);
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}

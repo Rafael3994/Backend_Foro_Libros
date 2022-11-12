@@ -155,3 +155,14 @@ exports.edituser = async (req, res, next) => {
         return res.status(500).json(error);
     }
 }
+
+exports.editrolesuser = async (req, res, next) => {
+    try {
+        const { idUser, role } = req.body;
+        const response = await UserService.editroleuser(idUser, role);
+        console.log(response);
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
