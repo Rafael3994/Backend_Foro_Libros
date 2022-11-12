@@ -34,6 +34,9 @@ router.put('/newadmin', [auth, admin, validateData(userParamsIdSchema)], UserCon
 // AÑADIR ROLE EDITOR A UN USER (admin)
 router.put('/neweditor', [auth, admin, validateData(userParamsIdSchema)], UserController.neweditor);
 
+// AÑADIR ROLE MODERADOR A UN USER (admin)
+router.put('/newmoderador', [auth, admin, validateData(userParamsIdSchema)], UserController.newmoderador);
+
 // EDITAR USER (user, admin)
 router.put('/edituser', [auth, validateData(userUpdateSchema)], UserController.edituser);
 

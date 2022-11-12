@@ -4,6 +4,8 @@ var LibroController = require('../controllers/libro');
 const auth = require('../middleware/auth');
 var admin = require('../middleware/admin');
 var editor = require('../middleware/editor');
+var moderador = require('../middleware/moderador');
+
 
 var LibroModel = require('../models/LibroModel');
 
@@ -70,7 +72,7 @@ router.get('/alllibros', auth, LibroController.getAllLibros)
 router.get('/getlibro', auth, LibroController.getAllLibrosById)
 
 // CREAR LIBRO (admin)
-router.post('/newlibro', [auth, editor ], LibroController.newLibro)
+router.post('/newlibro', [auth, editor], LibroController.newLibro)
 
 // ELIMINAR LIBRO (admin)
 router.delete('/deletelibro', [auth, editor], LibroController.deleteLibro)
@@ -81,16 +83,16 @@ router.put('/editlibro', [auth, editor], LibroController.editLibro)
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// COMENTARIOS LIBROS //////////////////////////////////
 // VER TODOS LOS COMENTARIOS DE LOS LIBROS (user, admin)
-router.get('/comentariolibro/getall', auth, LibroController.getAllComentariosLibro)
+router.get('/comentariolibro/getall', [auth, moderador], LibroController.getAllComentariosLibro)
 
 // AÑADIR UN COMENTARIO EN UN LIBRO (user)
 router.post('/comentariolibro/newcomentario', auth, LibroController.newComentarioLibro)
 
 // EDITAR UN COMENTARIO EN UN LIBRO (user)
-router.put('/comentariolibro/editcomentario', auth,  LibroController.editComentarioLibro)
+router.put('/comentariolibro/editcomentario', auth, LibroController.editComentarioLibro)
 
 // ELIMINAR UN COMENTARIO EN UN LIBRO (user, admin)
-router.delete('/comentariolibro/deletecomentario', auth, LibroController.deleteComentarioLibro)
+router.delete('/comentariolibro/deletecomentario', [auth, moderador], LibroController.deleteComentarioLibro)
 
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +112,7 @@ router.delete('/capitulo/deletecapitulo', [auth, admin], LibroController.deleteC
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// COMENTARIOS CAPITULOS ///////////////////////////////
 // VER TODOS LOS COMENTARIOS DE UN CAPITULO (user, admin)
-router.get('/comentariocap/getall', auth, LibroController.getAllComentariosCap)
+router.get('/comentariocap/getall', [auth, moderador], LibroController.getAllComentariosCap)
 
 // AÑADIR UN COMENTARIO DE UN CAPITULO (user)
 router.post('/comentariocap/newcomentario', auth, LibroController.newComentarioCap)
@@ -119,7 +121,7 @@ router.post('/comentariocap/newcomentario', auth, LibroController.newComentarioC
 router.put('/comentariocap/editcomentario', auth, LibroController.editComentarioCap)
 
 // ELIMINAR UN COMENTARIO DE UN CAPITULO (user, admin)
-router.delete('/comentariocap/deletecomentario', auth, LibroController.deleteComentarioCap)
+router.delete('/comentariocap/deletecomentario', [auth, moderador], LibroController.deleteComentarioCap)
 
 
 ///////////////////////////////////////////////////////////////////////////////////

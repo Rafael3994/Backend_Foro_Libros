@@ -129,6 +129,22 @@ exports.neweditor = async (req, res, next) => {
     }
 }
 
+exports.newmoderador = async (req, res, next) => {
+    try {
+        const response = await UserService.newmoderador(req.body.idUser);
+        if (response) {
+            // TODO: use i18
+            const message = 'succesfulNewModerador'
+            return res.status(200).json(message);
+        }
+        // TODO: use i18
+        const message = 'failedNewModerador'
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+}
+
 exports.edituser = async (req, res, next) => {
     try {
         const { name, email, password, photo } = req.body;
